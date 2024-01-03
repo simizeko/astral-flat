@@ -129,7 +129,8 @@ function windowResized() {
 
 function setup() {
     setAttributes('antialias', false);
-    // setAttributes('perPixelLighting', false);
+    setAttributes('perPixelLighting', false);
+    setAttributes('alpha', false);
     base = createCanvas(windowWidth, windowHeight, WEBGL);
     base.style('position: fixed');
     pixelDensity(1);

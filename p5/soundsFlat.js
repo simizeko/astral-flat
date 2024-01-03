@@ -457,6 +457,7 @@ class Sounds {
                 let currentDiameter = maxDiameter * (numberOseg - y);
 
                 push();
+                translate(windowWidth / 2, windowHeight / 2);
                 fill(cc.highlight, cc.alpha * 2.5);
                 textAlign(CENTER, CENTER);
                 textSize(windowHeight / 48);

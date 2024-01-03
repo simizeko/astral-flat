@@ -128,14 +128,10 @@ function windowResized() {
 /////////////////////////////////////////////////////////
 
 function setup() {
-    setAttributes('antialias', false);
-    setAttributes('perPixelLighting', false);
-    setAttributes('alpha', false);
-    base = createCanvas(windowWidth, windowHeight, WEBGL);
+    base = createCanvas(windowWidth, windowHeight);
     base.style('position: fixed');
     pixelDensity(1);
-    center = createVector(0, 0, 0);
-
+    center = createVector(windowWidth / 2, windowHeight / 2);
     midi = new MidiOut();
     midi.setup();
 
@@ -156,8 +152,8 @@ function setup() {
         planets[i].attachSounds(new Sounds(planets[i]));
     }
 
-    cam = new Cameras();
-    cam.init();
+    // cam = new Cameras();
+    // cam.init();
 
     menu = new Menu();
     if (openMenu) {
@@ -170,8 +166,8 @@ function setup() {
     textFont(font);
 
     setInterval(timeIt, 1000);
-    setInterval(addDust, 5000);
-    setInterval(cc.colourChange(), 5000);
+    // setInterval(addDust, 5000);
+    // setInterval(cc.colourChange(), 5000);
 
 }
 
@@ -208,41 +204,41 @@ function speedControl() {
 
 
 
-function rotateCam() {
-    if (rotate) {
-        let rot = map(planets.length, 0, 20, 0, 0.001);
-        let rSpeed = constrain(rot, 0, 0.001);
+// function rotateCam() {
+//     if (rotate) {
+//         let rot = map(planets.length, 0, 20, 0, 0.001);
+//         let rSpeed = constrain(rot, 0, 0.001);
 
-        cam.angleY = rSpeed;
-    }
-}
+//         cam.angleY = rSpeed;
+//     }
+// }
 
 function timeIt() {
-    cam.counter++;
-    if (cam.counter > 10) {
-        rotateCam();
-    }
+    //     cam.counter++;
+    //     if (cam.counter > 10) {
+    //         rotateCam();
+    //     }
     cc.counter++;
 }
 
-function mousePressed() {
-    angleY = 0;
-    cam.angleY = 0;
-    sun.angleY = 0;
-    cam.easycam.setState(cam.state1, 0);
-    cam.counter = 0;
-    cam.zSpeed = 0;
-}
+// function mousePressed() {
+//     angleY = 0;
+//     cam.angleY = 0;
+//     sun.angleY = 0;
+//     cam.easycam.setState(cam.state1, 0);
+//     cam.counter = 0;
+//     cam.zSpeed = 0;
+// }
 
-function addDust() {
-    let randomW = [width / 2, -width / 2]
-    let randomH = [height / 2, -height / 2]
-    a = new Dust(random(randomW), random(-height, height), 0.025, center);
-    dust.push(a);
+// function addDust() {
+//     let randomW = [width / 2, -width / 2]
+//     let randomH = [height / 2, -height / 2]
+//     a = new Dust(random(randomW), random(-height, height), 0.025, center);
+//     dust.push(a);
 
-    b = new Dust(random(-width, width), random(randomH), 0.025, center);
-    dust.push(b);
-}
+//     b = new Dust(random(-width, width), random(randomH), 0.025, center);
+//     dust.push(b);
+// }
 
 function calculateMass(value) {
     return sqrt(value) * 10;
@@ -250,88 +246,87 @@ function calculateMass(value) {
 
 function mouseReleased() {
     if (createPlanet) {
-        center = createVector(0, 0);
+        center = createVector(windowWidth / 2, windowHeight / 2);
         let newPlanet = new Planets(mouseX - width / 2, mouseY - height / 2, grow, center);
         newPlanet.attachSounds(new Sounds(newPlanet));
         planets.push(newPlanet);
     }
-    cam.counter = 0;
+    // cam.counter = 0;
 }
 
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////
 
 function draw() {
-    if (openMenu) {
-        menu.Active();
-    }
-    if (menu.counterM < 10) {
-        menu.Cooldown();
-    }
+    //     if (openMenu) {
+    //         menu.Active();
+    //     }
+    //     if (menu.counterM < 10) {
+    //         menu.Cooldown();
+    //     }
     menu.Update();
     cc.colourChange();
     background(cc.bg);
 
     speedControl();
 
-    swayX = map(mouseX - width / 2, 0, width, 3, - 3);
-    swayY = map(mouseY - height / 2, 0, height, 3, - 3);
-    swayX = lerp(0, swayX, 0.5);
-    swayY = lerp(0, swayY, 0.5);
+    //     swayX = map(mouseX - width / 2, 0, width, 3, - 3);
+    //     swayY = map(mouseY - height / 2, 0, height, 3, - 3);
+    //     swayX = lerp(0, swayX, 0.5);
+    //     swayY = lerp(0, swayY, 0.5);
 
-    let rX = 0;
-    let rY = map(angleY, 0, height, -PI, PI);
+    //     let rX = 0;
+    //     let rY = map(angleY, 0, height, -PI, PI);
 
-    let x = scalar * sin(rY) * cos(rX);
-    let y = scalar * sin(rX) * sin(rY);
-    let z = scalar * cos(rY);
-    // camera(x, y, -z, swayX, swayY, 0, 0, 1, 0);
+    //     let x = scalar * sin(rY) * cos(rX);
+    //     let y = scalar * sin(rX) * sin(rY);
+    //     let z = scalar * cos(rY);
+    //     // camera(x, y, -z, swayX, swayY, 0, 0, 1, 0);
 
-    center = createVector(0, 0, 0);
-    camPosition = createVector(x, y, -z);
+    center = createVector(windowWidth / 2, windowHeight / 2);
+    //     camPosition = createVector(x, y, -z);
 
-    // Lighting settings
-    spotLight(cc.R, cc.G, cc.B, 0, 0, 550, 0, 0, -1, PI / 3, 300)
-    spotLight(cc.R, cc.G, cc.B, 0, 0, -550, 0, 0, 1, PI / 3, 300)
-    ambientLight(cc.bg);
-    pointLight(cc.R, cc.G, cc.B, 0, 0, 0);
-    pointLight(cc.R, cc.G, cc.B, 0, 0, 150);
-    pointLight(cc.R, cc.G, cc.B, 0, 0, -150);
+    //     // Lighting settings
+    //     spotLight(cc.R, cc.G, cc.B, 0, 0, 550, 0, 0, -1, PI / 3, 300)
+    //     spotLight(cc.R, cc.G, cc.B, 0, 0, -550, 0, 0, 1, PI / 3, 300)
+    //     ambientLight(cc.bg);
+    //     pointLight(cc.R, cc.G, cc.B, 0, 0, 0);
+    //     pointLight(cc.R, cc.G, cc.B, 0, 0, 150);
+    //     pointLight(cc.R, cc.G, cc.B, 0, 0, -150);
 
     push();
     if (createPlanet && mouseIsPressed) {
         if (grow <= 2) {
-            emissiveMaterial(255, 255, 0, 150);
+            fill(255, 255, 0);
         } else
             if (grow <= 3) {
-                emissiveMaterial(0, 255, 255, 150);
+                fill(0, 255, 255);
             } else
                 if (grow <= 4) {
-                    emissiveMaterial(255, 0, 255, 150);
+                    fill(255, 0, 255);
                 } else
                     if (grow <= 5) {
-                        emissiveMaterial(0, 255, 0, 150);
+                        fill(0, 255, 0);
                     } else
                         if (grow <= 6) {
-                            emissiveMaterial(255, 255, 255, 150);
+                            fill(255, 255, 255);
                         } else
                             if (grow <= 7) {
-                                emissiveMaterial(255, 0, 0, 150)
+                                fill(255, 0, 0);
                             } else
                                 if (grow <= 8) {
-                                    emissiveMaterial(0, 0, 255, 150)
+                                    fill(0, 0, 255);
                                 } else
                                     if (grow <= 9) {
-                                        emissiveMaterial(50, 190, 150, 200)
+                                        fill(50, 190, 150);
                                     }
+
+        ellipse(mouseX, mouseY, calculateMass(grow));
         push();
-        emissiveMaterial(cc.bg);
-        translate(0, 0, 1);
-        ellipse(mouseX - width / 2, mouseY - height / 2, calculateMass(grow / 2));
+        fill(cc.bg);
+        ellipse(mouseX, mouseY, calculateMass(grow / 2));
         pop();
-        ellipse(mouseX - width / 2, mouseY - height / 2, calculateMass(grow));
-        // grow += 0.037; //growth speed
         grow += 0.045; //growth speed
     }
     else {
@@ -368,17 +363,17 @@ function draw() {
         }
     }
 
-    for (let i = dust.length - 1; i >= 0; i--) {
-        dust[i].update();
-        dust[i].show();
-        sun.attract(dust[i]);
-        if (dust[i].touches(sun)) {
-            dust.splice(i, 1);
-        }
-    }
+    //     for (let i = dust.length - 1; i >= 0; i--) {
+    //         dust[i].update();
+    //         dust[i].show();
+    //         sun.attract(dust[i]);
+    //         if (dust[i].touches(sun)) {
+    //             dust.splice(i, 1);
+    //         }
+    //     }
 
-    //// this makes mass effected the same for gravity (falling at the same speed). Remeber to replace '(gravity)' with '(weight)' below.
-    // let weight = p5.Vector.mult(gravity, planets.mass);
+    //     //// this makes mass effected the same for gravity (falling at the same speed). Remeber to replace '(gravity)' with '(weight)' below.
+    //     // let weight = p5.Vector.mult(gravity, planets.mass);
 
     for (let i = planets.length - 1; i >= 0; i--) {
 
@@ -408,9 +403,9 @@ function draw() {
         planets[i].sounds.calculateLength();
     }
 
-    sun.stars();
-    cam.update();
-    // cam.HUD(); // Display camera position info for debug
+    //     sun.stars();
+    //     cam.update();
+    //     // cam.HUD(); // Display camera position info for debug
     sounds.grid();
     sun.BHshow();
     midi.listOuts();
@@ -420,7 +415,6 @@ function draw() {
     }
 
     sounds.ModeSelect();
-    pixelDensity(1);
 }
 
 

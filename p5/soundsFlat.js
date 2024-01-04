@@ -464,9 +464,9 @@ class Sounds {
                 fill(cc.highlight, cc.alpha * 2.5);
                 textAlign(CENTER, CENTER);
                 textSize(windowHeight / 48);
-                if (cc.alpha <= 0) {
-                    noFill();
-                }
+                // if (cc.alpha <= 0) {
+                //     noFill();
+                // }
                 text(this.notes[this.defineScale][y - 2], 0, (-height / 2) + (currentDiameter / 2) + gapSize);
                 this.notes[this.defineScale].reverse();
                 text(this.notes[this.defineScale][y - 2], 0, (currentDiameter / 2.02) + gapSize);
@@ -476,10 +476,10 @@ class Sounds {
                 noFill();
                 strokeWeight(1);
                 stroke(cc.highlight, cc.alpha);
-                if (cc.alpha <= 0) {
-                    noStroke();
-                }
-                ellipse(0, 0, currentDiameter);
+                // if (cc.alpha <= 0) {
+                //     noStroke();
+                // }
+                // ellipse(0, 0, currentDiameter);
                 pop();
 
 
@@ -504,11 +504,11 @@ class Sounds {
 
 
     visualFeedback(x, y) {
-        if (this.visTrig) {
-            push();
-            ellipse(this.target.position.x, this.target.position.y, this.target.radius * 4);
-            pop();
-        }
+        // if (this.visTrig) {
+        //     push();
+        //     ellipse(this.target.position.x, this.target.position.y, this.target.radius * 4);
+        //     pop();
+        // }
 
         if (this.startCounter) { // I think this is visisble planet audio trigger
             this.trigCounter++;
@@ -516,12 +516,15 @@ class Sounds {
                 push();
                 noFill();
                 strokeWeight(this.target.radius / 6);
-                stroke(255, this.fadeout);
-                ellipse(this.target.position.x, this.target.position.y, (this.target.radius / 1.5) + (this.trigCounter * 1.5));
+                // stroke(255, this.fadeout);
+                // ellipse(this.target.position.x, this.target.position.y, (this.target.radius / 1.5) + (this.trigCounter * 1.5));
+                stroke(255);
+                ellipse(this.target.position.x, this.target.position.y, (this.target.radius * 2));
                 pop();
                 this.fadeout -= 5;
             }
         }
+
         if (this.trigCounter >= 40) {
             this.startCounter = false
             this.trigCounter = 0;
@@ -529,6 +532,8 @@ class Sounds {
         }
 
         // console.log(this.startCounter);
+        // print(this.fadeout);
+        // print(this.trigCounter);
     }
 
 

@@ -342,7 +342,7 @@ function draw() {
         planets[i].edges();
         planets[i].sounds.calculateNote();
         planets[i].sounds.trigger();
-        // planets[i].sounds.visualFeedback();
+        planets[i].sounds.visualFeedback();
         // planets[i].sounds.resetVisual()
         planets[i].sounds.calculateVelocity();
         planets[i].sounds.calculateLength();
@@ -358,6 +358,7 @@ function draw() {
     }
 
     sounds.ModeSelect();
+    // print(sounds.fadeout);
 }
 
 

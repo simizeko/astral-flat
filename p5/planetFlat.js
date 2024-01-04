@@ -7,7 +7,7 @@ class Planets {
 
         this.initialD = p5.Vector.sub(center, this.position);
         // this.initialD.normalize(); //sets initial velocity to 1
-        this.initialD.setMag(1.25 * orbitSpeed.initialMag);
+        this.initialD.setMag(1 * orbitSpeed.initialMag);
         this.initialVelocity = this.initialD.rotate(PI / -2);
 
         this.velocity = createVector(this.initialVelocity.x, this.initialVelocity.y);
@@ -43,10 +43,12 @@ class Planets {
     show() {
         push();
         // translate(0, 0, 0.5);
-        // ellipse(this.position.x, this.position.y, this.radius);
-        ambientMaterial(255);
-        translate(this.position.x, this.position.y, 0);
-        sphere(this.radius / 2, 9, 9);
+        noStroke();
+        fill(cc.R, cc.G, cc.B);
+        ellipse(this.position.x, this.position.y, this.radius);
+        // ambientMaterial(255);
+        // translate(this.position.x, this.position.y, 0);
+        // sphere(this.radius / 2, 9, 9);
         pop();
 
 
@@ -66,7 +68,7 @@ class Planets {
     showGravity() {
         if (showGravity) {
             stroke(cc.highlight);
-            line(this.position.x, this.position.y, 0, 0);
+            line(this.position.x, this.position.y, center.x, center.y);
 
         }
 
@@ -144,19 +146,19 @@ class Planets {
 
 
     edges() {
-        if (this.position.y + this.radius / 2 >= height / 2) {
-            this.position.y = height / 2 - this.radius / 2;
+        if (this.position.y + this.radius / 2 >= height) {
+            this.position.y = height - this.radius / 2;
             this.velocity.y *= -0.02;
-        } else if (this.position.y - this.radius / 2 <= -height / 2) {
-            this.position.y = -height / 2 + this.radius / 2;
+        } else if (this.position.y - this.radius / 2 <= 0) {
+            this.position.y = 0 + this.radius / 2;
             this.velocity.y *= -0.02;
         }
 
-        if (this.position.x + this.radius / 2 >= width / 2) {
-            this.position.x = width / 2 - this.radius / 2;
+        if (this.position.x + this.radius / 2 >= width) {
+            this.position.x = width - this.radius / 2;
             this.velocity.x *= -0.02;
-        } else if (this.position.x - this.radius / 2 <= -width / 2) {
-            this.position.x = -width / 2 + this.radius / 2;
+        } else if (this.position.x - this.radius / 2 <= 0) {
+            this.position.x = 0 + this.radius / 2;
             this.velocity.x *= -0.02;
         }
     }
@@ -164,8 +166,6 @@ class Planets {
     attachSounds(sounds) {
         this.sounds = sounds
     }
-
-
 
 }
 

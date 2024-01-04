@@ -101,7 +101,7 @@ class Menu {
         colVal = true;
         gravVal = false;
         aoeVal = false;
-        fpsVal = false;
+        fpsVal = true;
         idleVal = 'On';
         mergeVal = 'On';
         midiOptions = false;
@@ -325,11 +325,11 @@ class Menu {
             showInfluence = false;
         }
 
-        if (idleVal == 'On') {
-            rotate = true;
-        } else {
-            rotate = false;
-        }
+        // if (idleVal == 'On') {
+        //     rotate = true;
+        // } else {
+        //     rotate = false;
+        // }
 
         if (mergeVal == 'On') {
             mergePlanets = true;

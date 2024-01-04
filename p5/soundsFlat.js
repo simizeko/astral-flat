@@ -312,7 +312,7 @@ class Sounds {
     }
 
     trigger() {
-        if (this.target.pastPosition.x <= 0 && this.target.position.x > 0 && this.target.mass >= 1 && menu.muteAudio === false || this.target.pastPosition.x >= 0 && this.target.position.x < 0 && this.target.mass >= 1 && menu.muteAudio === false) {
+        if (this.target.pastPosition.x <= center.x && this.target.position.x > center.x && this.target.mass >= 1 && menu.muteAudio === false || this.target.pastPosition.x >= center.x && this.target.position.x < center.x && this.target.mass >= 1 && menu.muteAudio === false) {
             // if (this.target.position.x < 1 && this.target.position.x > - 1 && this.target.mass >= 1 && options.muteAudio === false) {
             // this.visualFeedback(this.target.position.x, this.target.position.y)
             // this.visualFeedback();
@@ -394,7 +394,7 @@ class Sounds {
 
     calculateNote() {
         const { x, y } = this.target.position;
-        let noteSector = int(map(y, -height / 2, height / 2, - 10, 10));
+        let noteSector = int(map(y, 0, height, - 10, 10));
         let ns = (abs(noteSector) - 1);
         if (ns <= -1) {
             ns = 0
@@ -402,9 +402,12 @@ class Sounds {
         if (ns >= 8) {
             ns = 7
         }
+        // push();
+        // fill(255);
         // textFont(debug);
         // textSize(24);
         // text(ns, x + 20, y);
+        // pop();
         return ns;
     }
 
@@ -466,7 +469,7 @@ class Sounds {
                 }
                 text(this.notes[this.defineScale][y - 2], 0, (-height / 2) + (currentDiameter / 2) + gapSize);
                 this.notes[this.defineScale].reverse();
-                text(this.notes[this.defineScale][y - 2], 0, (currentDiameter / 2.03) + gapSize);
+                text(this.notes[this.defineScale][y - 2], 0, (currentDiameter / 2.02) + gapSize);
                 this.notes[this.defineScale].reverse();
 
 
@@ -495,7 +498,7 @@ class Sounds {
             }
         }
         if (menu.gridFade) {
-            cc.fadeout(cam.counter);
+            cc.fadeout(resetCounter);
         }
     }
 

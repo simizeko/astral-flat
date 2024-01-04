@@ -4,7 +4,7 @@
 
 class Dust {
     constructor(tempX, tempY, tempM, center) {
-        this.position = createVector(tempX, tempY, 0);
+        this.position = createVector(tempX, tempY);
 
         this.initialD = p5.Vector.sub(center, this.position);
         this.initialD.setMag(10);
@@ -50,10 +50,11 @@ class Dust {
         // rotateY(0 + cam.angleY);
         // ellipse(this.position.x, this.position.y, this.radius);
         // emissiveMaterial(255);
-        emissiveMaterial(255);
-        translate(this.position.x, this.position.y, 0);
-        sphere(this.radius / 2);
-        // ellipse(this.position.x, this.position.y, this.radius);
+        noStroke();
+        fill(255, 255, 255, 100);
+        // translate(this.position.x, this.position.y, 0);
+        // sphere(this.radius / 2);
+        ellipse(this.position.x, this.position.y, this.radius);
         pop();
     }
 

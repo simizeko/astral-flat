@@ -16,141 +16,155 @@ class Sun {
         this.angleY = 0;
         this.rot = 0;
 
+        this.starsSize = 1;
+        this.starsDiameter = windowHeight / 2.5;
+        this.starsAngle = 0;
+        this.pointCount = 20;
+        this.starsRings = 6;
+        this.starsRotate = 0;
+        this.starsRotationSpeed = 6 / 100000;
     }
 
 
     BHshow() {
+        push();
         noStroke();
-        imageMode(CENTER);
-        this.slice.background(255, 0, 0);
-        this.slice.copy(base, (width / 2) - this.warpW / 2, (height / 2) - this.radius / 2, this.radius, this.radius, this.x, 0, this.radius, this.radius);
-        // this.x = (this.x + this.warpW) % this.slice.width;
+        fill(255);
+        ellipse(center.x, center.y, this.radius);
+        pop();
 
 
-        this.jitter += random(0.5, -0.5);
-        if (this.jitter >= 4) {
-            this.jitter = 3.9;
-        } if (this.jitter <= 2) {
-            this.jitter = 2.1;
-        }
-
-        // cam.easycam.beginHUD();
-        // translate(width / 2, height / 2, 0);
-        push();
-        rotateY(this.angleY);
-        translate(0, 0, -this.radius / 1.25);
-        // blendMode(LIGHTEST);
-        ambientLight(255);
-        texture(this.slice);
-        rotateY(PI);
-        // rotateY(PI/2);
-        rotateZ(this.angle);
-        sphere(this.radius / 1.25);
-        rotateZ(-this.angle)
-        this.angle += 0.1;
-        pop()
-
-        push();
-        ambientLight(255);
-        rotateY(this.angleY);
-        texture(this.slice);
-        // translate(0, 0, -this.radius / 1.1);
-        // rotateY(-PI);
-        // blendMode(SCREEN);
-        ellipse(0, 0, this.radius * 1.3);
-        blendMode(BLEND);
-        translate(0, 0, 2);
-        emissiveMaterial(0);
-        rotateZ(this.angle);
-        // ellipse(0, 0, this.radius + 5);
         // noStroke();
-        ellipse(0, 0, this.radius);
-        // stroke(cc.highlight);
-        strokeWeight(random(1, 6));
-        noFill();
-        ellipse(0, 0, this.radius * 1.3)
-        pop();
+        // imageMode(CENTER);
+        // this.slice.background(255, 0, 0);
+        // this.slice.copy(base, (width / 2) - this.warpW / 2, (height / 2) - this.radius / 2, this.radius, this.radius, this.x, 0, this.radius, this.radius);
+        // // this.x = (this.x + this.warpW) % this.slice.width;
 
-        push();
-        rotateY(this.angleY);
-        noStroke();
-        blendMode(SUBTRACT);
-        translate(0, 0, this.radius);
-        ambientMaterial(255);
-        // ellipse(0, 0, this.radius * 1.75)
-        sphere(this.radius / 2.2);
-        blendMode(BLEND)
-        pop();
 
-        this.angleY += cam.angleY;
+        // this.jitter += random(0.5, -0.5);
+        // if (this.jitter >= 4) {
+        //     this.jitter = 3.9;
+        // } if (this.jitter <= 2) {
+        //     this.jitter = 2.1;
+        // }
+
+        // // cam.easycam.beginHUD();
+        // // translate(width / 2, height / 2, 0);
+        // push();
+        // rotateY(this.angleY);
+        // translate(0, 0, -this.radius / 1.25);
+        // // blendMode(LIGHTEST);
+        // ambientLight(255);
+        // texture(this.slice);
+        // rotateY(PI);
+        // // rotateY(PI/2);
+        // rotateZ(this.angle);
+        // sphere(this.radius / 1.25);
+        // rotateZ(-this.angle)
+        // this.angle += 0.1;
+        // pop()
 
         // push();
+        // ambientLight(255);
+        // rotateY(this.angleY);
+        // texture(this.slice);
+        // // translate(0, 0, -this.radius / 1.1);
+        // // rotateY(-PI);
         // // blendMode(SCREEN);
-        // // texture(this.slice);
-        // fill(255,5)
-        // // rotateZ(-this.angle);
-        // ellipse(0, 0, this.radius*2.75);
-        // // rotateZ(this.angle);
-        // translate(0, 0, 1);
-        // fill(255,5);
-        // ellipse(0, 0, this.radius*3.25);
+        // ellipse(0, 0, this.radius * 1.3);
         // blendMode(BLEND);
+        // translate(0, 0, 2);
+        // emissiveMaterial(0);
+        // rotateZ(this.angle);
+        // // ellipse(0, 0, this.radius + 5);
+        // // noStroke();
+        // ellipse(0, 0, this.radius);
+        // // stroke(cc.highlight);
+        // strokeWeight(random(1, 6));
+        // noFill();
+        // ellipse(0, 0, this.radius * 1.3)
         // pop();
-        // cam.easycam.endHUD();
+
+        // push();
+        // rotateY(this.angleY);
+        // noStroke();
+        // blendMode(SUBTRACT);
+        // translate(0, 0, this.radius);
+        // ambientMaterial(255);
+        // // ellipse(0, 0, this.radius * 1.75)
+        // sphere(this.radius / 2.2);
+        // blendMode(BLEND)
+        // pop();
+
+        // this.angleY += cam.angleY;
+
+        // // push();
+        // // // blendMode(SCREEN);
+        // // // texture(this.slice);
+        // // fill(255,5)
+        // // // rotateZ(-this.angle);
+        // // ellipse(0, 0, this.radius*2.75);
+        // // // rotateZ(this.angle);
+        // // translate(0, 0, 1);
+        // // fill(255,5);
+        // // ellipse(0, 0, this.radius*3.25);
+        // // blendMode(BLEND);
+        // // pop();
+        // // cam.easycam.endHUD();
 
 
-        // graphics.image(this.slice, 300, 300, 400, 400);
+        // // graphics.image(this.slice, 300, 300, 400, 400);
 
-        this.rot += 3;
-        const numberOseg = 16;
-        const segment = (height / 2) / numberOseg;
-        const gapSize = segment * 0.8;
-        let maxDiameter = this.radius / 4.5;
-        for (let y = 1; y < numberOseg; y++) {
-            let currentDiameter = maxDiameter * (numberOseg - y);
+        // this.rot += 3;
+        // const numberOseg = 16;
+        // const segment = (height / 2) / numberOseg;
+        // const gapSize = segment * 0.8;
+        // let maxDiameter = this.radius / 4.5;
+        // for (let y = 1; y < numberOseg; y++) {
+        //     let currentDiameter = maxDiameter * (numberOseg - y);
 
 
-            // rotateY(PI);
-            push();
-            noStroke();
-            blendMode(LIGHTEST);
-            specularMaterial(0, 1);
-            // translate(0, 0, -sun.radius / 2.5);
-            translate(0, 4, 0)
-            rotateX(PI / 2);
-            rotateX(random(-0.03, -0.025));
-            rotateZ(-this.angleY);
-            // rotateZ(this.rot);
-            translate(0, 0, 0 + y)
+        //     // rotateY(PI);
+        //     push();
+        //     noStroke();
+        //     blendMode(LIGHTEST);
+        //     specularMaterial(0, 1);
+        //     // translate(0, 0, -sun.radius / 2.5);
+        //     translate(0, 4, 0)
+        //     rotateX(PI / 2);
+        //     rotateX(random(-0.03, -0.025));
+        //     rotateZ(-this.angleY);
+        //     // rotateZ(this.rot);
+        //     translate(0, 0, 0 + y)
 
-            // noFill();
+        //     // noFill();
 
-            // ambientMaterial(100);
-            // this.ringColour = color(255, 255/8 + 255/10 * (y)/numberOseg);
-            // ellipse(0,0,this.radius * 2);
-            // strokeWeight(0.1);
-            // stroke(cc.highlight);
-            ellipse(0, 0, currentDiameter / 1.3, currentDiameter * 1.25);
-            blendMode(BLEND);
-            pop();
+        //     // ambientMaterial(100);
+        //     // this.ringColour = color(255, 255/8 + 255/10 * (y)/numberOseg);
+        //     // ellipse(0,0,this.radius * 2);
+        //     // strokeWeight(0.1);
+        //     // stroke(cc.highlight);
+        //     ellipse(0, 0, currentDiameter / 1.3, currentDiameter * 1.25);
+        //     blendMode(BLEND);
+        //     pop();
 
-            push();
-            // translate(-sun.radius / 2, 0, 0);
-            rotateY(this.angleY + PI / random(5.3, 5.5) + (map(sin(this.sineRot), -1, 1, 5, 6.5)));
-            // this.sineRot += 0.5;
-            this.sineRot += 5;
-            translate(0, 0, 0 + y)
+        //     push();
+        //     // translate(-sun.radius / 2, 0, 0);
+        //     rotateY(this.angleY + PI / random(5.3, 5.5) + (map(sin(this.sineRot), -1, 1, 5, 6.5)));
+        //     // this.sineRot += 0.5;
+        //     this.sineRot += 5;
+        //     translate(0, 0, 0 + y)
 
-            // noFill();
-            // blendMode(LIGHTEST);
-            // ambientMaterial(100);
-            // this.ringColour = color(255, 255/8 + 255/10 * (y)/numberOseg);
-            specularMaterial(255, 1);
-            // stroke(cc.highlight);
-            ellipse(0, 0, currentDiameter);
-            blendMode(BLEND);
-            pop();
-        }
+        //     // noFill();
+        //     // blendMode(LIGHTEST);
+        //     // ambientMaterial(100);
+        //     // this.ringColour = color(255, 255/8 + 255/10 * (y)/numberOseg);
+        //     specularMaterial(255, 1);
+        //     // stroke(cc.highlight);
+        //     ellipse(0, 0, currentDiameter);
+        //     blendMode(BLEND);
+        //     pop();
+        // }
 
     }
 
@@ -210,22 +224,40 @@ class Sun {
 
         // pop();
 
-        noStroke();
+
+        // push();
+        // translate(width /2 , height/ 2);
+        // noStroke();
+        // let r = (height / 4) / tan(PI / 6); // size of sphere made of dots
+        // let total = 10;
+        // for (let i = 0; i < total; i++) {
+        //     let longitude = map(i, 0, total, -PI, PI);
+        //     for (let j = 0; j < total; j++) {
+        //         let latitude = map(j, 0, total, -PI / 2, PI / 2);
+        //         let x = r * sin(longitude) * cos(latitude);
+        //         let y = r * sin(latitude) * sin(longitude);
+        //         let z = r * cos(longitude);
+        //         stroke(cc.stars);
+        //         strokeWeight(2);
+        //         point(x, y, z);
+        //     }
+        // }
+        // pop();
+
         push();
-        let r = (height / 2) / tan(PI / 6); // size of sphere made of dots
-        let total = 10;
-        for (let i = 0; i < total; i++) {
-            let longitude = map(i, 0, total, -PI, PI);
-            for (let j = 0; j < total; j++) {
-                let latitude = map(j, 0, total, -PI / 2, PI / 2);
-                let x = r * sin(longitude) * cos(latitude);
-                let y = r * sin(latitude) * sin(longitude);
-                let z = r * cos(longitude);
+        translate(width / 2, height / 2,);
+        this.starsRotate += this.starsRotationSpeed;
+        for (let j = 0; j <= this.starsRings; j++) {
+            rotate(this.starsRotate);
+            for (let i = this.starsAngle; i < radians(360 + this.starsAngle); i += radians(360 / (this.pointCount * j / 2))) {
+                let x = (this.starsDiameter / 2 * Math.cos(i)) * j + width / 2;
+                let y = (this.starsDiameter / 2 * Math.sin(i)) * j + height / 2;
                 stroke(cc.stars);
-                strokeWeight(2);
-                point(x, y, z);
+                strokeWeight(this.starsSize);
+                point(x - width / 2, y - height / 2);
             }
         }
+        
         pop();
     }
 

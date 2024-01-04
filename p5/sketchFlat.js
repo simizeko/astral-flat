@@ -80,8 +80,10 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     menu.muteB.remove();
     menu.menuB.remove();
-    menu.fullB.remove()
+    menu.fullB.remove();
     menu.MenuButtons();
+    menu.fpsCounter.remove();
+    menu.FpsCounter();
 
     center = createVector(windowWidth / 2, windowHeight / 2);
     sun.Resize();
@@ -234,7 +236,7 @@ function draw() {
     }
     menu.Update();
     cc.colourChange();
-    background(cc.bg);
+    background(175,0,0);
     sounds.grid();
 
     speedControl();

@@ -451,10 +451,10 @@ class Sounds {
 
 
     grid() {
-        const numberOseg = 10;
-        const segment = (height / 2) / numberOseg;
-        const gapSize = segment * 0.5;
-        var maxDiameter = windowHeight / 10;
+        let numberOseg = 10;
+        let segment = (height / 2) / numberOseg;
+        let gapSize = segment * 0.5;
+        let maxDiameter = windowHeight / 10;
         if (menu.gridOn) {
             for (let y = 1; y < numberOseg; y++) {
                 let currentDiameter = maxDiameter * (numberOseg - y);

@@ -479,7 +479,7 @@ class Sounds {
                 // if (cc.alpha <= 0) {
                 //     noStroke();
                 // }
-                ellipse(0, 0, currentDiameter);
+                // ellipse(0, 0, currentDiameter);
                 pop();
 
 

@@ -77,39 +77,39 @@ function keyPressed() {
     }
 }
 
-// function windowResized() {
-//     resizeCanvas(windowWidth, windowHeight);
-//     menu.muteB.remove();
-//     menu.menuB.remove();
-//     menu.fullB.remove();
-//     menu.MenuButtons();
-//     menu.fpsCounter.remove();
-//     menu.FpsCounter();
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+    menu.muteB.remove();
+    menu.menuB.remove();
+    menu.fullB.remove();
+    menu.MenuButtons();
+    menu.fpsCounter.remove();
+    menu.FpsCounter();
 
-//     center = createVector(width / 2, height / 2);
-//     sun.Resize();
-//     // sunSize = height / sunRadius;
-//     sun = new Sun(center.x, center.y, sunSize);
-//     // cam.Resize();
+    center = createVector(width / 2, height / 2);
+    sun.Resize();
+    // sunSize = height / sunRadius;
+    sun = new Sun(center.x, center.y, sunSize);
+    // cam.Resize();
 
-//     // Checks to see if menu needs resizing
-//     if (openMenu) {
-//         menu.container.remove();
-//         menu.bgFull.remove();
-//         menu.bgHalf.remove();
-//         menu.Container();
-//         if (midiOptions) {
-//             menu.OpenMidiPage();
-//         }
-//     }
-// }
+    // Checks to see if menu needs resizing
+    if (openMenu) {
+        menu.container.remove();
+        menu.bgFull.remove();
+        menu.bgHalf.remove();
+        menu.Container();
+        if (midiOptions) {
+            menu.OpenMidiPage();
+        }
+    }
+}
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 
 function setup() {
-    base = createCanvas(windowWidth, windowHeight);
-    // base.style('position: fixed');
+    base = createCanvas(250, 400);
+    base.style('position: fixed');
     pixelDensity(1);
     center = createVector(windowWidth / 2, windowHeight / 2);
     midi = new MidiOut();
@@ -233,9 +233,8 @@ function draw() {
     }
     menu.Update();
     cc.colourChange();
-    background(100, 0, 0);
-    // sounds.grid();
-    Grid();
+    background(0, 100, 0);
+    sounds.grid();
 
     speedControl();
 
@@ -334,17 +333,17 @@ function draw() {
 
 
         sun.attract(planets[i]);
-        planets[i].showGravity();
 
         // planets[i].applyForce(gravity);
         planets[i].update();
         planets[i].show();
         planets[i].edges();
+        planets[i].showGravity();
         planets[i].sounds.calculateNote();
+        planets[i].sounds.calculateVelocity();
         planets[i].sounds.trigger();
         planets[i].sounds.visualFeedback();
         // planets[i].sounds.resetVisual()
-        // planets[i].sounds.calculateVelocity();
         // planets[i].sounds.calculateLength();
     }
 
@@ -357,61 +356,8 @@ function draw() {
         midi.midiListen();
     }
 
-    // sounds.ModeSelect();
+    sounds.ModeSelect();
     // print(sounds.fadeout);
-}
-
-
-function Grid() {
-    let numberOseg = 10;
-    let segment = (height / 2) / numberOseg;
-    let gapSize = segment * 0.5;
-    let maxDiameter = windowHeight / 10;
-    if (menu.gridOn) {
-        for (let y = 1; y < numberOseg; y++) {
-            let currentDiameter = maxDiameter * (numberOseg - y);
-
-            push();
-            translate(windowWidth / 2, windowHeight / 2);
-            fill(cc.highlight);
-            textAlign(CENTER, CENTER);
-            textSize(windowHeight / 48);
-            // if (cc.alpha <= 0) {
-            //     noFill();
-            // }
-            text(sounds.notes[sounds.defineScale][y - 2], 0, (-height / 2) + (currentDiameter / 2) + gapSize);
-            sounds.notes[sounds.defineScale].reverse();
-            text(sounds.notes[sounds.defineScale][y - 2], 0, (currentDiameter / 2.02) + gapSize);
-            sounds.notes[sounds.defineScale].reverse();
-
-
-            noFill();
-            strokeWeight(1);
-            stroke(cc.highlight);
-            // if (cc.alpha <= 0) {
-            //     noStroke();
-            // }
-            // ellipse(0, 0, currentDiameter);
-            pop();
-
-
-            // console.log('alpha:', cc.alpha);
-
-            // push();
-            // translate(0, (- height / 2) - gapSize, 0);
-            // noFill();
-            // stroke(cc.highlight);
-            // line(0, y * segment, 0, (y * segment) + gapSize);
-            // pop();
-            // push();
-            // stroke(cc.highlight);
-            // line(0, y * segment, 0, (y * segment) + gapSize);
-            // pop();
-        }
-    }
-    if (menu.gridFade) {
-        cc.fadeout(resetCounter);
-    }
 
     // debug dimensions for mobile debug
     fill(255, 0, 0);
@@ -432,5 +378,3 @@ function Grid() {
     text("display's density: " + dd, 25, 100);
     text("active pixel density: " + pd, 25, 125);
 }
-
-

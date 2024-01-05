@@ -236,7 +236,7 @@ function draw() {
     }
     menu.Update();
     cc.colourChange();
-    background(0, 100, 0);
+    background(100, 0, 0);
     // sounds.grid();
 
     speedControl();
@@ -344,13 +344,13 @@ function draw() {
         planets[i].edges();
         planets[i].sounds.calculateNote();
         planets[i].sounds.trigger();
-        // planets[i].sounds.visualFeedback();
+        planets[i].sounds.visualFeedback();
         // planets[i].sounds.resetVisual()
         planets[i].sounds.calculateVelocity();
         planets[i].sounds.calculateLength();
     }
 
-    sun.stars();
+    // sun.stars();
 
     sun.BHshow();
     midi.listOuts();

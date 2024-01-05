@@ -109,7 +109,7 @@ function keyPressed() {
 
 function setup() {
     base = createCanvas(windowWidth, windowHeight);
-    base.style('position: fixed');
+    // base.style('position: fixed');
     pixelDensity(1);
     center = createVector(windowWidth / 2, windowHeight / 2);
     midi = new MidiOut();
@@ -233,7 +233,7 @@ function draw() {
     }
     menu.Update();
     cc.colourChange();
-    background(0, 100, 0);
+    background(100, 0, 0);
     // sounds.grid();
     Grid();
 

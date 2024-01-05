@@ -1,12 +1,4 @@
-function preload() {
-    debug = loadFont('./assets/hindRegular.otf');
-    font = loadFont('./assets/hindLight.otf');
-    muteWht = 'url(./design/mute1.svg)';
-    muteBlk = 'url(./design/muteblk1.svg)';
-    menuWht = 'url(./design/menu-thin.svg)';
-    fullOpen = 'url(./design/fullOpen.svg)';
-    fullClose = 'url(./design/fullClose.svg)'
-}
+
 
 let font;
 let debug;
@@ -53,10 +45,19 @@ let sounds;
 let midiDevice = true;
 
 let fadeout = 255;
-let feedbackS = 0;
 let rings = [];
 
 let resetCounter = 0;
+
+// function preload() {
+    // debug = loadFont('./assets/hindRegular.otf');
+    // font = loadFont('./assets/hindLight.otf');
+    muteWht = 'url(./design/mute1.svg)';
+    muteBlk = 'url(./design/muteblk1.svg)';
+    menuWht = 'url(./design/menu-thin.svg)';
+    fullOpen = 'url(./design/fullOpen.svg)';
+    fullClose = 'url(./design/fullClose.svg)'
+// }
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
@@ -107,9 +108,11 @@ function windowResized() {
 /////////////////////////////////////////////////////////
 
 function setup() {
+    debug = loadFont('./assets/hindRegular.otf');
+    font = loadFont('./assets/hindLight.otf');
     base = createCanvas(windowWidth, windowHeight);
     base.style('position: fixed');
-    // pixelDensity(1);
+    pixelDensity(1);
     center = createVector(windowWidth / 2, windowHeight / 2);
     midi = new MidiOut();
     midi.setup();
@@ -118,7 +121,6 @@ function setup() {
     sun = new Sun(center.x, center.y, sunSize);
 
     fadeout = 255;
-    feedbackR = 1;
 
     cc = new Colours();
 
@@ -152,7 +154,6 @@ function setup() {
 
 function speedControl() {
     if (orbitVal === 'I') {
-        // background(0, 255, 0);
         orbitSpeed = {
             initialMag: 2,
             c: 0.8,
@@ -160,7 +161,6 @@ function speedControl() {
         }
     }
     if (orbitVal === 'II') {
-        // background(255, 0, 0);
         orbitSpeed = {
             initialMag: 1.3,
             c: 1.85,
@@ -168,7 +168,6 @@ function speedControl() {
         }
     }
     if (orbitVal === 'III') {
-        // background(0, 0, 255);
         orbitSpeed = {
             initialMag: 1.82,
             c: 2.65 * 1.5,
@@ -236,8 +235,9 @@ function draw() {
     }
     menu.Update();
     cc.colourChange();
-    background(0, 100, 0);
-    sounds.grid();
+    background(0, 0, 100);
+    // sounds.grid();
+    Grid();
 
     speedControl();
 
@@ -359,11 +359,61 @@ function draw() {
         midi.midiListen();
     }
 
-    sounds.ModeSelect();
+    // sounds.ModeSelect();
     // print(sounds.fadeout);
 }
 
 
+function Grid() {
+    let numberOseg = 10;
+    let segment = (height / 2) / numberOseg;
+    let gapSize = segment * 0.5;
+    let maxDiameter = windowHeight / 10;
+    if (menu.gridOn) {
+        for (let y = 1; y < numberOseg; y++) {
+            let currentDiameter = maxDiameter * (numberOseg - y);
 
+            push();
+            translate(windowWidth / 2, windowHeight / 2);
+            fill(cc.highlight);
+            textAlign(CENTER, CENTER);
+            textSize(windowHeight / 48);
+            // if (cc.alpha <= 0) {
+            //     noFill();
+            // }
+            text(sounds.notes[sounds.defineScale][y - 2], 0, (-height / 2) + (currentDiameter / 2) + gapSize);
+            sounds.notes[sounds.defineScale].reverse();
+            text(sounds.notes[sounds.defineScale][y - 2], 0, (currentDiameter / 2.02) + gapSize);
+            sounds.notes[sounds.defineScale].reverse();
+
+
+            noFill();
+            strokeWeight(1);
+            stroke(cc.highlight);
+            // if (cc.alpha <= 0) {
+            //     noStroke();
+            // }
+            // ellipse(0, 0, currentDiameter);
+            pop();
+
+
+            // console.log('alpha:', cc.alpha);
+
+            // push();
+            // translate(0, (- height / 2) - gapSize, 0);
+            // noFill();
+            // stroke(cc.highlight);
+            // line(0, y * segment, 0, (y * segment) + gapSize);
+            // pop();
+            // push();
+            // stroke(cc.highlight);
+            // line(0, y * segment, 0, (y * segment) + gapSize);
+            // pop();
+        }
+    }
+    if (menu.gridFade) {
+        cc.fadeout(resetCounter);
+    }
+}
 
 

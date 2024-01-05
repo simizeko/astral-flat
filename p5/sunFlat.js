@@ -5,7 +5,7 @@ class Sun {
         this.position = createVector(tempX, tempY);
         this.mass = tempM;
         this.radius = sqrt(this.mass) * 5;
-        // this.radius = displayHeight / 10;
+        // this.radius = windowHeight / 10;
         this.slice;
         this.warpW = 60;
         this.slice = createGraphics(this.warpW, this.radius);
@@ -17,7 +17,7 @@ class Sun {
         this.rot = 0;
 
         this.starsSize = 1;
-        this.starsDiameter = displayHeight / 2.5;
+        this.starsDiameter = windowHeight / 2.5;
         this.starsAngle = 0;
         this.pointCount = 20;
         this.starsRings = 6;
@@ -262,7 +262,7 @@ class Sun {
     }
 
     Resize() {
-        this.radius = displayHeight / 10;
+        this.radius = windowHeight / 10;
     }
 
 }

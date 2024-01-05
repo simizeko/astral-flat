@@ -50,40 +50,25 @@ class Planets {
         // translate(this.position.x, this.position.y, 0);
         // sphere(this.radius / 2, 9, 9);
         pop();
-
-
-        // if (showGravity) {
-        //     stroke(255, 100, 0, 200);
-        //     line(this.position.x, this.position.y, width / 2, height / 2);
-        // }
-
-        // noStroke();
-
-        // if (showInfluence) {
-        //     fill(255, 20);
-        //     ellipse(this.position.x, this.position.y, this.radius * this.influence * 2);
-        // }
     }
 
     showGravity() {
         if (showGravity) {
+            push();
             stroke(cc.highlight);
             line(this.position.x, this.position.y, center.x, center.y);
+            pop();
 
         }
 
-        noStroke();
+        
 
         if (showInfluence) {
-            // push();
-
-            // specularMaterial(255, 255, 255, 10);
-            // translate(this.position.x, this.position.y, 0);
-            // sphere(this.radius * this.influence)
-
-            // pop();
+            push();
+            noStroke();
             fill(255, 40);
             ellipse(this.position.x, this.position.y, this.radius * this.influence * 2);
+            pop();
 
         }
     }

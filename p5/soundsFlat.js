@@ -451,57 +451,57 @@ class Sounds {
     }
 
 
-    grid() {
-        let numberOseg = 10;
-        let segment = (height / 2) / numberOseg;
-        let gapSize = segment * 0.5;
-        let maxDiameter = windowHeight / 10;
-        if (menu.gridOn) {
-            for (let y = 1; y < numberOseg; y++) {
-                let currentDiameter = maxDiameter * (numberOseg - y);
+    // grid() {
+    //     let numberOseg = 10;
+    //     let segment = (height / 2) / numberOseg;
+    //     let gapSize = segment * 0.5;
+    //     let maxDiameter = windowHeight / 10;
+    //     if (menu.gridOn) {
+    //         for (let y = 1; y < numberOseg; y++) {
+    //             let currentDiameter = maxDiameter * (numberOseg - y);
 
-                push();
-                translate(windowWidth / 2, windowHeight / 2);
-                fill(cc.highlight, cc.alpha * 2.5);
-                textAlign(CENTER, CENTER);
-                textSize(windowHeight / 48);
-                // if (cc.alpha <= 0) {
-                //     noFill();
-                // }
-                text(this.notes[this.defineScale][y - 2], 0, (-height / 2) + (currentDiameter / 2) + gapSize);
-                this.notes[this.defineScale].reverse();
-                text(this.notes[this.defineScale][y - 2], 0, (currentDiameter / 2.02) + gapSize);
-                this.notes[this.defineScale].reverse();
-
-
-                noFill();
-                strokeWeight(1);
-                stroke(cc.highlight, cc.alpha);
-                // if (cc.alpha <= 0) {
-                //     noStroke();
-                // }
-                // ellipse(0, 0, currentDiameter);
-                pop();
+    //             push();
+    //             translate(windowWidth / 2, windowHeight / 2);
+    //             fill(cc.highlight);
+    //             textAlign(CENTER, CENTER);
+    //             textSize(windowHeight / 48);
+    //             // if (cc.alpha <= 0) {
+    //             //     noFill();
+    //             // }
+    //             text(this.notes[this.defineScale][y - 2], 0, (-height / 2) + (currentDiameter / 2) + gapSize);
+    //             this.notes[this.defineScale].reverse();
+    //             text(this.notes[this.defineScale][y - 2], 0, (currentDiameter / 2.02) + gapSize);
+    //             this.notes[this.defineScale].reverse();
 
 
-                // console.log('alpha:', cc.alpha);
+    //             noFill();
+    //             strokeWeight(1);
+    //             stroke(cc.highlight);
+    //             // if (cc.alpha <= 0) {
+    //             //     noStroke();
+    //             // }
+    //             // ellipse(0, 0, currentDiameter);
+    //             pop();
 
-                // push();
-                // translate(0, (- height / 2) - gapSize, 0);
-                // noFill();
-                // stroke(cc.highlight);
-                // line(0, y * segment, 0, (y * segment) + gapSize);
-                // pop();
-                // push();
-                // stroke(cc.highlight);
-                // line(0, y * segment, 0, (y * segment) + gapSize);
-                // pop();
-            }
-        }
-        if (menu.gridFade) {
-            cc.fadeout(resetCounter);
-        }
-    }
+
+    //             // console.log('alpha:', cc.alpha);
+
+    //             // push();
+    //             // translate(0, (- height / 2) - gapSize, 0);
+    //             // noFill();
+    //             // stroke(cc.highlight);
+    //             // line(0, y * segment, 0, (y * segment) + gapSize);
+    //             // pop();
+    //             // push();
+    //             // stroke(cc.highlight);
+    //             // line(0, y * segment, 0, (y * segment) + gapSize);
+    //             // pop();
+    //         }
+    //     }
+    //     if (menu.gridFade) {
+    //         cc.fadeout(resetCounter);
+    //     }
+    // }
 
 
     visualFeedback(x, y) {
@@ -522,7 +522,7 @@ class Sounds {
                 stroke(255);
                 ellipse(this.target.position.x, this.target.position.y, (this.target.radius * 2));
                 pop();
-                this.fadeout -= 5;
+                // this.fadeout -= 5;
             }
         }
 

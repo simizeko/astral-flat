@@ -143,7 +143,7 @@ function setup() {
     textFont(font);
 
     setInterval(timeIt, 1000);
-    setInterval(addDust, 5000);
+    // setInterval(addDust, 5000);
 
 }
 
@@ -236,7 +236,7 @@ function draw() {
     }
     menu.Update();
     cc.colourChange();
-    background(0, 0, 100);
+    background(0, 100, 0);
     sounds.grid();
 
     speedControl();

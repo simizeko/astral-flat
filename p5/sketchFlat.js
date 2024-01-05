@@ -108,9 +108,9 @@ function windowResized() {
 /////////////////////////////////////////////////////////
 
 function setup() {
-    base = createCanvas(250, 400);
+    base = createCanvas(windowWidth, windowHeight);
     base.style('position: fixed');
-    pixelDensity(1);
+    pixelDensity(2);
     center = createVector(windowWidth / 2, windowHeight / 2);
     midi = new MidiOut();
     midi.setup();

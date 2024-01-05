@@ -8,8 +8,8 @@ class Colours {
         this.sun = color(255, 255, 255);
         this.stars = color(255, 255, 255);
         this.highlight = 255;
-        this.alpha = 100;
-        this.alphaReset = 100;
+        this.alpha = 255;
+        this.alphaReset = 255;
         this.R = 255;
         this.G = 255;
         this.B = 255;
@@ -67,8 +67,6 @@ class Colours {
         this.palettes = [this.mono, this.red, this.blue, this.purple, this.orange];
         // shuffle(this.palettes);
         // this.active(this.palettes[0]);
-;
-
     }
 
     // active(target) {
@@ -96,7 +94,7 @@ class Colours {
     fadeout(timer) {
         if (timer >= 5) {
             // this.alpha += -0.02;
-            this.alpha += -0.5;
+            this.alpha += -2;
         }
         else { this.alpha = this.alphaReset };
         // if (cc.alpha <= 0) {

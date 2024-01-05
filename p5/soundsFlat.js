@@ -91,7 +91,7 @@ const bowgart = new Tone.Sampler({
     release: 3,
     volume: 12
 // }).chain(bowgartFilter, widener, master);
-}).chain(master);
+}).chain(bowgartFilter, master);
 
 const basfin = new Tone.Sampler({
     urls: {
@@ -138,9 +138,10 @@ const centralPros = new Tone.Sampler({
     },
     attack: 2,
     release: 12,
-    volume: 5
+    volume: 0
     // velocity: 1
-}).chain(pingPong, cheby, master);
+// }).chain(pingPong, cheby, master);
+}).chain(master);
 // .chain(cheby, reverb, Tone.Destination);
 
 const clockwork = new Tone.Sampler({
@@ -330,13 +331,13 @@ class Sounds {
                     // const instrument = [bowgart, skotos, absynth, element, centralPros];
                     // const instrument = [bowgart, pkit, absynth, element, centralPros];
                     const instrument = [bowgart, offworld, absynth, element, centralPros, outspace, skotos, twinkle];
-                    // const length = [5, 2, 5, 5, 5];
+                    const length = [2, 2, 2, 2, 4, 2, 2, 2];
 
                     // instrument.triggerAttackRelease(notes, duration, time, velocity)
                     // instrument[this.calculateInstrument(this.target.radius)].triggerAttackRelease(this.scale[this.defineScale()], length[this.calculateInstrument(this.target.radius)], Tone.now(), this.calculateVelocity());
 
-                    // instrument[this.calculateInstrument(this.target.radius)].triggerAttackRelease(this.notes[this.defineScale][this.calculateNote()], length[this.calculateInstrument(this.target.radius)], Tone.now(), this.calculateVelocity());
-                    instrument[this.calculateInstrument(this.target.radius)].triggerAttackRelease(this.notes[this.defineScale][this.calculateNote()], length[this.calculateInstrument(this.target.radius)], Tone.now(), 1);
+                    instrument[this.calculateInstrument(this.target.radius)].triggerAttackRelease(this.notes[this.defineScale][this.calculateNote()], length[this.calculateInstrument(this.target.radius)], Tone.now(), this.calculateVelocity());
+                    // instrument[this.calculateInstrument(this.target.radius)].triggerAttackRelease(this.notes[this.defineScale][this.calculateNote()], length[this.calculateInstrument(this.target.radius)], Tone.now(), 1);
 
                     // basfin.triggerAttackRelease(this.notes[this.calculateNote()], length[this.calculateInstrument(this.target.radius)]);
                     // twinkle.triggerAttackRelease(this.notes[this.calculateNote()], 4, Tone.now(),this.calculateVelocity());
@@ -465,7 +466,7 @@ class Sounds {
 
                 push();
                 translate(windowWidth / 2, windowHeight / 2);
-                fill(cc.highlight);
+                fill(cc.highlight, cc.alpha);
                 textAlign(CENTER, CENTER);
                 textSize(windowHeight / 48);
                 // if (cc.alpha <= 0) {
@@ -479,7 +480,7 @@ class Sounds {
 
                 noFill();
                 strokeWeight(0.5);
-                stroke(cc.highlight);
+                stroke(cc.highlight, cc.alpha);
                 // if (cc.alpha <= 0) {
                 //     noStroke();
                 // }

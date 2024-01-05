@@ -299,7 +299,7 @@ function draw() {
         for (let other of planets) {
             if (planets[i] !== other && planets[i].intersects(other)) {
                 overlapping = true;
-                planets[i].proximity(other);
+                // planets[i].proximity(other);
             }
         }
         if (overlapping && mergePlanets) {
@@ -325,20 +325,21 @@ function draw() {
         // sounds.identifyTarget(planets[i]);
         // let proximity = false;
 
-        // for (let other of planets) { //this for loop shows the gravity line between planets
-        //     if (planets[i] !== other && planets[i].proximity(other)) {
-        //         // planets[i].proximity(other);
-        //     }
-        // }
+        for (let other of planets) { //this for loop shows the gravity line between planets
+            if (planets[i] !== other && planets[i].proximity(other)) {
+                // planets[i].proximity(other);
+            }
+        }
 
 
         sun.attract(planets[i]);
 
         // planets[i].applyForce(gravity);
+        planets[i].showGravity();
         planets[i].update();
         planets[i].show();
         // planets[i].edges();
-        planets[i].showGravity();
+        
         planets[i].sounds.calculateNote();
         planets[i].sounds.calculateVelocity();
         planets[i].sounds.trigger();
@@ -387,4 +388,6 @@ function draw() {
     // let m = meter.getValue();
     text(m, width / 2, height / 2);
     pop();
+
+    print(cc.alpha)
 }

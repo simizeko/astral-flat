@@ -110,7 +110,7 @@ function windowResized() {
 function setup() {
     base = createCanvas(windowWidth, windowHeight);
     base.style('position: fixed');
-    // pixelDensity(1);
+    pixelDensity(1);
     center = createVector(windowWidth / 2, windowHeight / 2);
     midi = new MidiOut();
     midi.setup();
@@ -233,7 +233,7 @@ function draw() {
     }
     menu.Update();
     cc.colourChange();
-    background(100, 0, 0);
+    background(0, 0, 100);
     sounds.grid();
 
     speedControl();

@@ -174,7 +174,7 @@ class Menu {
         this.Mode('', 'green', this.mode);
         this.Grid('Grid', 'hotpink', this.grid);
         this.Display('Display', 'orange', this.display);
-        this.Idle('Idle Rotation / Zoom', 'cyan');
+        // this.Idle('Idle Rotation / Zoom', 'cyan');
         this.MergePlanets('Collisions', 'red');
         this.ClearPlanets('Reset', 'yellow');
         this.Midi('Midi Options', 'purple');
@@ -283,7 +283,7 @@ class Menu {
         gravVal = this.displayButtons[1].checked();
         aoeVal = this.displayButtons[2].checked();
         fpsVal = this.displayButtons[3].checked();
-        idleVal = this.idleButton.value();
+        // idleVal = this.idleButton.value();
         mergeVal = this.mergeButtons.value();
 
         if (midiOptions) {

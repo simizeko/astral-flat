@@ -475,12 +475,12 @@ class Sounds {
 
 
                 noFill();
-                strokeWeight(1);
+                strokeWeight(0.5);
                 stroke(cc.highlight);
                 // if (cc.alpha <= 0) {
                 //     noStroke();
                 // }
-                // ellipse(0, 0, currentDiameter);
+                ellipse(0, 0, currentDiameter);
                 pop();
 
 
@@ -518,9 +518,10 @@ class Sounds {
                 noFill();
                 strokeWeight(this.target.radius / 6);
                 // stroke(255, this.fadeout);
-                // ellipse(this.target.position.x, this.target.position.y, (this.target.radius / 1.5) + (this.trigCounter * 1.5));
                 stroke(255);
-                ellipse(this.target.position.x, this.target.position.y, (this.target.radius * 2));
+                ellipse(this.target.position.x, this.target.position.y, (this.target.radius / 1.5) + (this.trigCounter * 1.5));
+                stroke(255);
+                // ellipse(this.target.position.x, this.target.position.y, (this.target.radius * 2));
                 pop();
                 // this.fadeout -= 5;
             }

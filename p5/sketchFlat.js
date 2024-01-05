@@ -347,7 +347,7 @@ function draw() {
         // planets[i].sounds.calculateLength();
     }
 
-    // sun.stars();
+    sun.stars();
 
     sun.BHshow();
     midi.listOuts();

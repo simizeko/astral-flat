@@ -49,15 +49,15 @@ let rings = [];
 
 let resetCounter = 0;
 
-// function preload() {
-    // debug = loadFont('./assets/hindRegular.otf');
-    // font = loadFont('./assets/hindLight.otf');
-    muteWht = 'url(./design/mute1.svg)';
-    muteBlk = 'url(./design/muteblk1.svg)';
-    menuWht = 'url(./design/menu-thin.svg)';
-    fullOpen = 'url(./design/fullOpen.svg)';
-    fullClose = 'url(./design/fullClose.svg)'
-// }
+function preload() {
+debug = loadFont('./assets/hindRegular.otf');
+font = loadFont('./assets/hindLight.otf');
+muteWht = 'url(./design/mute1.svg)';
+muteBlk = 'url(./design/muteblk1.svg)';
+menuWht = 'url(./design/menu-thin.svg)';
+fullOpen = 'url(./design/fullOpen.svg)';
+fullClose = 'url(./design/fullClose.svg)'
+}
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
@@ -108,8 +108,6 @@ function windowResized() {
 /////////////////////////////////////////////////////////
 
 function setup() {
-    debug = loadFont('./assets/hindRegular.otf');
-    font = loadFont('./assets/hindLight.otf');
     base = createCanvas(windowWidth, windowHeight);
     base.style('position: fixed');
     pixelDensity(1);
@@ -414,6 +412,25 @@ function Grid() {
     if (menu.gridFade) {
         cc.fadeout(resetCounter);
     }
+
+    // debug dimensions for mobile debug
+    fill(255, 0, 0);
+    ellipse(0, 0, 100);
+    let cw = width;
+    let ch = height;
+    let ww = windowWidth;
+    let wh = windowHeight;
+    let dw = displayWidth;
+    let dh = displayHeight;
+    let dd = displayDensity();
+    let pd = pixelDensity();
+    fill(255);
+    textSize(14);
+    text('canvas size: ' + cw + 'x' + ch, 25, 25);
+    text('window size: ' + ww + 'x' + wh, 25, 50);
+    text('display size: ' + dw + 'x' + dh, 25, 75);
+    text("display's density: " + dd, 25, 100);
+    text("active pixel density: " + pd, 25, 125);
 }
 
 

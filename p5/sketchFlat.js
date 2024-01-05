@@ -236,8 +236,8 @@ function draw() {
     }
     menu.Update();
     cc.colourChange();
-    background(100, 0, 0);
-    // sounds.grid();
+    background(0, 0, 100);
+    sounds.grid();
 
     speedControl();
 
@@ -328,11 +328,11 @@ function draw() {
         // sounds.identifyTarget(planets[i]);
         // let proximity = false;
 
-        for (let other of planets) { //this for loop shows the gravity line between planets
-            if (planets[i] !== other && planets[i].proximity(other)) {
-                // planets[i].proximity(other);
-            }
-        }
+        // for (let other of planets) { //this for loop shows the gravity line between planets
+        //     if (planets[i] !== other && planets[i].proximity(other)) {
+        //         // planets[i].proximity(other);
+        //     }
+        // }
 
 
         sun.attract(planets[i]);
@@ -346,8 +346,8 @@ function draw() {
         planets[i].sounds.trigger();
         planets[i].sounds.visualFeedback();
         // planets[i].sounds.resetVisual()
-        planets[i].sounds.calculateVelocity();
-        planets[i].sounds.calculateLength();
+        // planets[i].sounds.calculateVelocity();
+        // planets[i].sounds.calculateLength();
     }
 
     // sun.stars();

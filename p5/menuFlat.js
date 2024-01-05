@@ -749,7 +749,7 @@ class Menu {
             let fs = fullscreen();
             fullscreen(!fs);
             fullScrn = !fullScrn;
-            resizeCanvas(windowWidth, windowHeight);
+            // resizeCanvas(windowWidth, windowHeight);
         }
 
         this.InputStyles();

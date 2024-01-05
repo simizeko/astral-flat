@@ -337,7 +337,7 @@ function draw() {
         // planets[i].applyForce(gravity);
         planets[i].update();
         planets[i].show();
-        planets[i].edges();
+        // planets[i].edges();
         planets[i].showGravity();
         planets[i].sounds.calculateNote();
         planets[i].sounds.calculateVelocity();

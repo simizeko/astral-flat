@@ -3,7 +3,7 @@
 /////////// mix settings //////////
 const master = new Tone.Gain();
 const lowEnd = new Tone.Filter(150, 'lowpass');
-const limiter = new Tone.Limiter(-10);
+const limiter = new Tone.Limiter(-5);
 
 const compressor = new Tone.Compressor({
     threshhold: -30,
@@ -67,7 +67,8 @@ const offworld = new Tone.Sampler({
     attack: 0,
     release: 3,
     volume: -4
-}).chain(chorus, master);
+// }).chain(chorus, master);
+}).chain(master);
 
 const spazio = new Tone.Sampler({
     urls: {
@@ -89,7 +90,8 @@ const bowgart = new Tone.Sampler({
     attack: 0,
     release: 3,
     volume: 12
-}).chain(bowgartFilter, widener, master);
+// }).chain(bowgartFilter, widener, master);
+}).chain(master);
 
 const basfin = new Tone.Sampler({
     urls: {
@@ -187,7 +189,8 @@ const absynth = new Tone.Sampler({
     attack: 3,
     release: 3,
     volume: 1
-}).chain(chorus, master);
+// }).chain(chorus, master);
+}).chain(master);
 
 const earthdrone = new Tone.Sampler({
     urls: {

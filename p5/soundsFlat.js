@@ -113,7 +113,7 @@ const twinkle = new Tone.Sampler({
     release: 5,
     volume: 5
     // baseUrl: "./audio",
-}).chain(autoWah, reverb, Tone.Destination)
+}).chain(autoWah, reverb, master)
 
 const outspace = new Tone.Sampler({
     urls: {
@@ -138,7 +138,7 @@ const centralPros = new Tone.Sampler({
     release: 12,
     volume: 5
     // velocity: 1
-}).chain(pingPong, cheby, Tone.Destination);
+}).chain(pingPong, cheby, master);
 // .chain(cheby, reverb, Tone.Destination);
 
 const clockwork = new Tone.Sampler({
@@ -151,7 +151,7 @@ const clockwork = new Tone.Sampler({
     release: 2,
     volume: 0
     // velocity: 1
-}).chain(Tone.Destination);
+}).chain(master);
 
 const easydoesit = new Tone.Sampler({
     urls: {
@@ -163,7 +163,7 @@ const easydoesit = new Tone.Sampler({
     release: 3,
     volume: 0
     // velocity: 1
-}).chain(Tone.Destination);
+}).chain(master);
 
 const element = new Tone.Sampler({
     urls: {
@@ -175,7 +175,7 @@ const element = new Tone.Sampler({
     release: 8,
     volume: 4
     // velocity: 1
-}).chain(Tone.Destination);
+}).chain(master);
 //.chain(feedbackDelay, autoWah, Tone.Destination);
 
 const absynth = new Tone.Sampler({
@@ -187,7 +187,7 @@ const absynth = new Tone.Sampler({
     attack: 3,
     release: 3,
     volume: 1
-}).chain(chorus, Tone.Destination);
+}).chain(chorus, master);
 
 const earthdrone = new Tone.Sampler({
     urls: {
@@ -198,7 +198,7 @@ const earthdrone = new Tone.Sampler({
     attack: 0,
     release: 3,
     volume: 5
-}).chain(Tone.Destination);
+}).chain(master);
 
 const myhouse = new Tone.Sampler({
     urls: {
@@ -209,7 +209,7 @@ const myhouse = new Tone.Sampler({
     attack: 0,
     release: 3,
     volume: 4
-}).chain(feedbackDelay, reverb, Tone.Destination);
+}).chain(feedbackDelay, reverb, master);
 // .chain(feedbackDelay, reverb, pingPong, Tone.Destination);
 
 const skotos = new Tone.Sampler({
@@ -221,7 +221,7 @@ const skotos = new Tone.Sampler({
     attack: 0,
     release: 3,
     volume: -5
-}).chain(chorus, monoWide, Tone.Destination);
+}).chain(chorus, monoWide, master);
 
 
 
@@ -244,8 +244,8 @@ const pkit = new Tone.Sampler({
 
 
 //////////// MASTER OUT /////////////
-
-master.chain(compressor, Tone.Destination);
+const meter = new Tone.Meter();
+master.chain(compressor, limiter, meter, Tone.Destination);
 // Tone.Destination.chain(); // Master output chain
 
 //////////////////////////////////////

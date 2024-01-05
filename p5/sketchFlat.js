@@ -50,13 +50,13 @@ let rings = [];
 let resetCounter = 0;
 
 function preload() {
-debug = loadFont('./assets/hindRegular.otf');
-font = loadFont('./assets/hindLight.otf');
-muteWht = 'url(./design/mute1.svg)';
-muteBlk = 'url(./design/muteblk1.svg)';
-menuWht = 'url(./design/menu-thin.svg)';
-fullOpen = 'url(./design/fullOpen.svg)';
-fullClose = 'url(./design/fullClose.svg)'
+    debug = loadFont('./assets/hindRegular.otf');
+    font = loadFont('./assets/hindLight.otf');
+    muteWht = 'url(./design/mute1.svg)';
+    muteBlk = 'url(./design/muteblk1.svg)';
+    menuWht = 'url(./design/menu-thin.svg)';
+    fullOpen = 'url(./design/fullOpen.svg)';
+    fullClose = 'url(./design/fullClose.svg)'
 }
 
 /////////////////////////////////////////////////////////
@@ -360,6 +360,7 @@ function draw() {
     // print(sounds.fadeout);
 
     // debug dimensions for mobile debug
+    push();
     fill(255, 0, 0);
     ellipse(0, 0, 100);
     let cw = width;
@@ -377,4 +378,13 @@ function draw() {
     text('display size: ' + dw + 'x' + dh, 25, 75);
     text("display's density: " + dd, 25, 100);
     text("active pixel density: " + pd, 25, 125);
+    pop();
+
+    push();
+    fill(0);
+    textAlign(CENTER, CENTER)
+    let m = floor(meter.getValue());
+    // let m = meter.getValue();
+    text(m, width / 2, height / 2);
+    pop();
 }

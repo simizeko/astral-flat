@@ -233,7 +233,7 @@ function draw() {
     }
     menu.Update();
     cc.colourChange();
-    background(100, 100, 0);
+    background(100, 0, 0);
     sounds.grid();
 
     speedControl();

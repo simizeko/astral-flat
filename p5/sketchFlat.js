@@ -77,32 +77,32 @@ function keyPressed() {
     }
 }
 
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-    menu.muteB.remove();
-    menu.menuB.remove();
-    menu.fullB.remove();
-    menu.MenuButtons();
-    menu.fpsCounter.remove();
-    menu.FpsCounter();
+// function windowResized() {
+//     resizeCanvas(windowWidth, windowHeight);
+//     menu.muteB.remove();
+//     menu.menuB.remove();
+//     menu.fullB.remove();
+//     menu.MenuButtons();
+//     menu.fpsCounter.remove();
+//     menu.FpsCounter();
 
-    center = createVector(windowWidth / 2, windowHeight / 2);
-    sun.Resize();
-    sunSize = height / sunRadius;
-    sun = new Sun(center.x, center.y, sunSize);
-    // cam.Resize();
+//     center = createVector(width / 2, height / 2);
+//     sun.Resize();
+//     // sunSize = height / sunRadius;
+//     sun = new Sun(center.x, center.y, sunSize);
+//     // cam.Resize();
 
-    // Checks to see if menu needs resizing
-    if (openMenu) {
-        menu.container.remove();
-        menu.bgFull.remove();
-        menu.bgHalf.remove();
-        menu.Container();
-        if (midiOptions) {
-            menu.OpenMidiPage();
-        }
-    }
-}
+//     // Checks to see if menu needs resizing
+//     if (openMenu) {
+//         menu.container.remove();
+//         menu.bgFull.remove();
+//         menu.bgHalf.remove();
+//         menu.Container();
+//         if (midiOptions) {
+//             menu.OpenMidiPage();
+//         }
+//     }
+// }
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
@@ -233,7 +233,7 @@ function draw() {
     }
     menu.Update();
     cc.colourChange();
-    background(0, 0, 100);
+    background(0, 100, 0);
     // sounds.grid();
     Grid();
 

@@ -6,6 +6,7 @@ class Sun {
         this.mass = tempM;
         this.radius = sqrt(this.mass) * 5;
         // this.radius = windowHeight / 10;
+        this.showSun;
         this.slice;
         this.warpW = 60;
         this.slice = createGraphics(this.warpW, this.radius);
@@ -257,12 +258,12 @@ class Sun {
                 point(x - width / 2, y - height / 2);
             }
         }
-        
+
         pop();
     }
 
     Resize() {
-        this.radius = windowHeight / 10;
+        this.radius = height / 10;
     }
 
 }

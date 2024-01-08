@@ -373,6 +373,7 @@ function draw() {
     text('display size: ' + dw + 'x' + dh, 25, 75);
     text("display's density: " + dd, 25, 100);
     text("active pixel density: " + pd, 25, 125);
+    text("max voices: " + MAX_POLYPHONY, 25, 150);
     pop();
 
     // push();

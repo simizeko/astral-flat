@@ -35,6 +35,8 @@ class Sun {
         ellipse(center.x, center.y, this.radius * shake);
         fill(cc.R, cc.G, cc.B, 50);
         ellipse(center.x, center.y, this.radius * 1.25);
+
+        
         fill(0);
         ellipse(center.x, center.y, this.radius);
         pop();

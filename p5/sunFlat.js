@@ -5,7 +5,7 @@ class Sun {
         this.position = createVector(tempX, tempY);
         this.mass = tempM;
         // this.radius = sqrt(this.mass) * 5;
-        this.radius = height / 10;
+        this.radius = (height / 10) + 2;
         this.showSun;
         this.slice;
         this.warpW = 60;
@@ -28,9 +28,14 @@ class Sun {
 
 
     BHshow() {
+        let shake = random(1.075, 1.125);
         push();
         noStroke();
-        fill(255);
+        fill(cc.R, cc.G, cc.B, 150);
+        ellipse(center.x, center.y, this.radius * shake);
+        fill(cc.R, cc.G, cc.B, 50);
+        ellipse(center.x, center.y, this.radius * 1.25);
+        fill(0);
         ellipse(center.x, center.y, this.radius);
         pop();
 

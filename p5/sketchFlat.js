@@ -384,5 +384,5 @@ function draw() {
     // // let m = meter.getValue();
     // // text(m, width / 2, height / 2);
     // pop();
-    print(cc.alpha);
+    print(mergeVal);
 }

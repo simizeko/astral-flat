@@ -81,11 +81,11 @@ class Menu {
         this.gridButtons;
         this.displayButtons = [];
         this.idleButton;
-        this.mergeButtonss
+        this.mergeButtons;
         this.midiButton;
         this.midiModeButton;
         this.channelButtons;
-        this.lengthSlider
+        this.lengthSlider;
         this.outputDropdown;
         this.inputDropdown;
         this.backButton;
@@ -486,7 +486,7 @@ class Menu {
         this.idleButton.parent(this.div);
         this.idleButton.option('On');
         this.idleButton.option('Off');
-        this.idleButton.selected('On');
+        this.idleButton.selected(idleVal);
         this.idleButton.style('margin-left', this.padding);
         this.idleButton.style('margin-right', this.padding);
         this.idleButton.style('margin-bottom', this.padding);
@@ -499,7 +499,7 @@ class Menu {
         this.mergeButtons.parent(this.div);
         this.mergeButtons.option('On');
         this.mergeButtons.option('Off');
-        this.mergeButtons.selected('On');
+        this.mergeButtons.selected(mergeVal);
         this.mergeButtons.style('margin-left', this.padding);
         this.mergeButtons.style('margin-right', this.padding);
         this.mergeButtons.style('margin-bottom', this.padding);

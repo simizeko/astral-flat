@@ -179,7 +179,7 @@ const element = new Tone.Sampler({
     },
     attack: 12,
     release: 8,
-    volume: 4
+    volume: 6
     // velocity: 1
 }).chain(master);
 //.chain(feedbackDelay, autoWah, Tone.Destination);
@@ -262,7 +262,7 @@ master.chain(compressor, limiter, Tone.Destination);
 let bufferSourceStart = Tone.BufferSource.prototype.start;
 let _playingBuffers = [];
 // let MAX_BUFFERS = 10;
-let MAX_POLYPHONY = 2;
+let MAX_POLYPHONY = 6;
 
 // Tone.BufferSource.prototype.start = function (time, offset, duration, gain) {
 //     //console.log(" + ", time, offset, duration, gain);

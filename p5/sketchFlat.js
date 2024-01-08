@@ -330,7 +330,7 @@ function draw() {
         sun.attract(planets[i]);
 
         // planets[i].applyForce(gravity);
-        planets[i].showGravity();
+        planets[i].ShowGravity();
         planets[i].update();
         planets[i].show();
         // planets[i].edges();

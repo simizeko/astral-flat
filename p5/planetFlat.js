@@ -46,7 +46,7 @@ class Planets {
         pop();
     }
 
-    showGravity() {
+    ShowGravity() {
         if (showGravity) {
             push();
             stroke(cc.highlight, 100);
@@ -114,8 +114,10 @@ class Planets {
             other.applyForce(force);
 
             if (showGravity) {
+                push();
                 stroke(cc.highlight, 100);
                 line(this.position.x, this.position.y, other.position.x, other.position.y)
+                pop();
             }
         }
     }

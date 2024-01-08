@@ -3,7 +3,7 @@
 /////////// mix settings //////////
 const master = new Tone.Gain();
 const lowEnd = new Tone.Filter(150, 'lowpass');
-const limiter = new Tone.Limiter(-5);
+const limiter = new Tone.Limiter(-10);
 
 const compressor = new Tone.Compressor({
     threshhold: -30,
@@ -67,7 +67,7 @@ const offworld = new Tone.Sampler({
     attack: 0,
     release: 3,
     volume: -4
-// }).chain(chorus, master);
+    // }).chain(chorus, master);
 }).chain(master);
 
 const spazio = new Tone.Sampler({
@@ -90,7 +90,7 @@ const bowgart = new Tone.Sampler({
     attack: 0,
     release: 3,
     volume: 12
-// }).chain(bowgartFilter, widener, master);
+    // }).chain(bowgartFilter, widener, master);
 }).chain(bowgartFilter, master);
 
 const basfin = new Tone.Sampler({
@@ -140,7 +140,7 @@ const centralPros = new Tone.Sampler({
     release: 12,
     volume: 0
     // velocity: 1
-// }).chain(pingPong, cheby, master);
+    // }).chain(pingPong, cheby, master);
 }).chain(master);
 // .chain(cheby, reverb, Tone.Destination);
 
@@ -190,7 +190,7 @@ const absynth = new Tone.Sampler({
     attack: 3,
     release: 3,
     volume: 1
-// }).chain(chorus, master);
+    // }).chain(chorus, master);
 }).chain(master);
 
 const earthdrone = new Tone.Sampler({
@@ -248,12 +248,68 @@ const pkit = new Tone.Sampler({
 
 
 //////////// MASTER OUT /////////////
-const meter = new Tone.Meter();
-master.chain(compressor, limiter, meter, Tone.Destination);
+// const meter = new Tone.Meter();
+master.chain(compressor, limiter, Tone.Destination);
 // Tone.Destination.chain(); // Master output chain
-
 //////////////////////////////////////
 
+let bufferSourceStart = Tone.BufferSource.prototype.start;
+let _playingBuffers = [];
+// let MAX_BUFFERS = 10;
+let MAX_POLYPHONY = 6;
+
+// Tone.BufferSource.prototype.start = function (time, offset, duration, gain) {
+//     //console.log(" + ", time, offset, duration, gain);
+
+//     // Prevent buffer playback if we have exceeded max # buffers playing
+//     // (or if there's no volume... what's the point?
+//     // if (_playingBuffers.length >= MAX_BUFFERS || gain <= 0) return this;
+
+
+//     // shut down the samples FIFO-style
+//     while (_playingBuffers.length >= MAX_POLYPHONY) {
+//         let oldestSampleSource = _playingBuffers.shift(); // pulls it off early - onended won't find it
+//         oldestSampleSource.stop(Tone.now());
+//         // console.log("stopping", oldestSampleSource);
+//     }
+
+//     _playingBuffers.push(this);
+
+//     this.onended = function (buffer) {
+//         let index = _playingBuffers.indexOf(buffer);
+//         if (index > -1) {
+//             _playingBuffers.splice(index, 1);
+//         }
+//     };
+//     return bufferSourceStart.bind(this)(time, offset, duration, gain);
+// };
+
+
+Tone.BufferSource.prototype.start = function(time, offset, duration, gain){
+    // Don't waste time queueing up something that has no volume
+    if (gain > 0) {
+        // shut down the last playing sample
+        while (_playingBuffers.length >= MAX_POLYPHONY){
+            let oldestSampleSource = _playingBuffers.shift(); // pulls it off early - onended won't find it
+
+            oldestSampleSource.stop(Tone.now());
+            log(["stopping", oldestSampleSource], "buffer");
+        }
+
+        _playingBuffers.push(this);
+
+        // this.onended = function (buffer) {
+        //             let index = _playingBuffers.indexOf(buffer);
+        //             if (index > -1) {
+        //                 _playingBuffers.splice(index, 1);
+        //             }
+        //         };
+
+        return bufferSourceStart.bind(this)(time, offset, duration, gain);
+    }
+}
+
+//////////////////////////////////////
 
 class Sounds {
     constructor(target, targetV) {
@@ -284,29 +340,12 @@ class Sounds {
         this.defineScale = 3;
     }
 
-    // setup() {
-    // //     this.angleY = 0;
-    // //     this.rot = 0;
-    // }
-
-    startAudio() {
-        // osc.start();
-        // lfo.start();
-    }
-
-    // defineScale() {
-    //     //  if button pressed return value for scale array
-    //     return 0
-
-    //     //  if button pressed return value for scale array
-    //     return 1
-
-    //     //  if button pressed return value for scale array
-    //     return 2
-
-    //     //  if button pressed return value for scale array
-    //     return 3
-
+    // startAudio() {
+    //     //attach a click listener to canvas
+    //     document.querySelector('canvas')?.addEventListener('click', async () => {
+    //         await Tone.start()
+    //         console.log('audio is ready')
+    //     })
     // }
 
 
@@ -392,7 +431,6 @@ class Sounds {
         } if (evaluate > calculateMass(8)) {
             return 7;
         } return false;
-
     }
 
 
@@ -459,7 +497,7 @@ class Sounds {
         let numberOseg = 10;
         let segment = (height / 2) / numberOseg;
         let gapSize = segment * 0.5;
-        let maxDiameter = windowHeight / 10;
+        let maxDiameter = height / 10;
         if (menu.gridOn) {
             for (let y = 1; y < numberOseg; y++) {
                 let currentDiameter = maxDiameter * (numberOseg - y);
@@ -503,17 +541,12 @@ class Sounds {
             }
         }
         if (menu.gridFade) {
-            cc.fadeout(resetCounter);
+            cc.Fadeout(resetCounter);
         }
     }
 
 
     visualFeedback(x, y) {
-        // if (this.visTrig) {
-        //     push();
-        //     ellipse(this.target.position.x, this.target.position.y, this.target.radius * 4);
-        //     pop();
-        // }
 
         if (this.startCounter) { // I think this is visisble planet audio trigger
             this.trigCounter++;
@@ -521,13 +554,13 @@ class Sounds {
                 push();
                 noFill();
                 strokeWeight(this.target.radius / 6);
-                // stroke(255, this.fadeout);
-                stroke(255);
-                ellipse(this.target.position.x, this.target.position.y, (this.target.radius / 1.5) + (this.trigCounter * 1.5));
-                stroke(255);
-                // ellipse(this.target.position.x, this.target.position.y, (this.target.radius * 2));
+                stroke(255, this.fadeout);
+                // stroke(255);
+                // ellipse(this.target.position.x, this.target.position.y, (this.target.radius / 1.5) + (this.trigCounter));
+                // stroke(255);
+                ellipse(this.target.position.x, this.target.position.y, (this.target.radius * 2));
                 pop();
-                // this.fadeout -= 5;
+                this.fadeout -= 5;
             }
         }
 

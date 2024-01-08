@@ -17,8 +17,6 @@ class Planets {
         this.influence = this.mass * planetInfluence;
         this.counter = 0;
         this.sounds = null;
-
-        // this.note = tempNote;
     }
 
 
@@ -42,20 +40,16 @@ class Planets {
 
     show() {
         push();
-        // translate(0, 0, 0.5);
         noStroke();
         fill(cc.R, cc.G, cc.B);
         ellipse(this.position.x, this.position.y, this.radius);
-        // ambientMaterial(255);
-        // translate(this.position.x, this.position.y, 0);
-        // sphere(this.radius / 2, 9, 9);
         pop();
     }
 
     showGravity() {
         if (showGravity) {
             push();
-            stroke(cc.highlight);
+            stroke(cc.highlight, 100);
             line(this.position.x, this.position.y, center.x, center.y);
             pop();
 
@@ -99,8 +93,8 @@ class Planets {
             // }
 
             // Keep the sun from gaining mass and growing in size
-            sun.mass = sunSize;
-            sun.radius = sqrt(sunSize) * 5;
+            sun.mass = sunMass;
+            sun.radius = height/10;
 
             return true;
         } else {
@@ -112,8 +106,6 @@ class Planets {
     proximity(other) {
         let p = dist(this.position.x, this.position.y, other.position.x, other.position.y);
         if (p < this.radius * this.influence) {
-            // background(255, 50);
-            // return true;
             let force = p5.Vector.sub(this.position, other.position);
             let distanceSq = constrain(force.magSq(), 10000, 25000);
             let G = planetGravityStrength; // gravity strength
@@ -122,12 +114,11 @@ class Planets {
             other.applyForce(force);
 
             if (showGravity) {
-                stroke(255, 100);
+                stroke(cc.highlight, 100);
                 line(this.position.x, this.position.y, other.position.x, other.position.y)
             }
         }
     }
-
 
 
     edges() {

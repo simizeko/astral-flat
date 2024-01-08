@@ -749,6 +749,7 @@ class Menu {
             let fs = fullscreen();
             fullscreen(!fs);
             fullScrn = !fullScrn;
+            menu.counterM = 0;
             // resizeCanvas(windowWidth, windowHeight);
         }
 

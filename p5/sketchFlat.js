@@ -26,7 +26,7 @@ let showInfluence = false;
 let hoverMuteButton = false;
 
 let sunRadius = 4;
-let sunSize;
+let sunMass = 120;
 let initialPlanets = 0;
 // let planetMass = 4;
 let planetInfluence = 2;
@@ -43,9 +43,6 @@ let slow = false, medium = true, fast = false;
 
 let sounds;
 let midiDevice = true;
-
-let fadeout = 255;
-let rings = [];
 
 let resetCounter = 0;
 
@@ -87,10 +84,8 @@ function windowResized() {
     menu.FpsCounter();
 
     center = createVector(width / 2, height / 2);
-    sun.Resize();
-    // sunSize = height / sunRadius;
-    sun = new Sun(center.x, center.y, sunSize);
-    // cam.Resize();
+
+    sun = new Sun(center.x, center.y, sunMass);
 
     // Checks to see if menu needs resizing
     if (openMenu) {
@@ -112,17 +107,16 @@ function setup() {
     base.style('position: fixed');
     pixelDensity(1);
     center = createVector(windowWidth / 2, windowHeight / 2);
+
+    sounds = new Sounds();
+    // sounds.startAudio();
     midi = new MidiOut();
     midi.setup();
 
-    sunSize = height / sunRadius;
-    sun = new Sun(center.x, center.y, sunSize);
-
-    fadeout = 255;
+    // sunMass = height / sunRadius;
+    sun = new Sun(center.x, center.y, sunMass);
 
     cc = new Colours();
-
-    sounds = new Sounds();
 
     for (let i = 0; i < initialPlanets; i++) {
         planets[i] = new Planets(random(-width / 2 + 100, width / 2 - 100), random(-height / 2 + 100, height / 2 - 100), 1, center);
@@ -155,7 +149,7 @@ function speedControl() {
         orbitSpeed = {
             initialMag: 2,
             c: 0.8,
-            sunGravity: 0.2
+            sunGravity: 0.33
         }
     }
     if (orbitVal === 'II') {
@@ -234,6 +228,7 @@ function draw() {
     menu.Update();
     cc.colourChange();
     background(cc.bg);
+
     sounds.grid();
 
     speedControl();
@@ -339,7 +334,7 @@ function draw() {
         planets[i].update();
         planets[i].show();
         // planets[i].edges();
-        
+
         planets[i].sounds.calculateNote();
         planets[i].sounds.calculateVelocity();
         planets[i].sounds.trigger();
@@ -358,7 +353,6 @@ function draw() {
     }
 
     sounds.ModeSelect();
-    // print(sounds.fadeout);
 
     // debug dimensions for mobile debug
     push();
@@ -381,13 +375,13 @@ function draw() {
     text("active pixel density: " + pd, 25, 125);
     pop();
 
-    push();
-    fill(0);
-    textAlign(CENTER, CENTER)
-    let m = floor(meter.getValue());
-    // let m = meter.getValue();
-    text(m, width / 2, height / 2);
-    pop();
-
-    print(cc.alpha)
+    // push();
+    // fill(0);
+    // textAlign(CENTER, CENTER);
+    // text(round(sun.radius), width / 2, height / 2);
+    // // let m = floor(meter.getValue());
+    // // let m = meter.getValue();
+    // // text(m, width / 2, height / 2);
+    // pop();
+    print(cc.alpha);
 }

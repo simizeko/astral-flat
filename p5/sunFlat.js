@@ -4,8 +4,8 @@ class Sun {
     constructor(tempX, tempY, tempM) {
         this.position = createVector(tempX, tempY);
         this.mass = tempM;
-        this.radius = sqrt(this.mass) * 5;
-        // this.radius = windowHeight / 10;
+        // this.radius = sqrt(this.mass) * 5;
+        this.radius = height / 10;
         this.showSun;
         this.slice;
         this.warpW = 60;
@@ -18,7 +18,7 @@ class Sun {
         this.rot = 0;
 
         this.starsSize = 1;
-        this.starsDiameter = windowHeight / 2.5;
+        this.starsDiameter = height / 2.5;
         this.starsAngle = 0;
         this.pointCount = 20;
         this.starsRings = 6;
@@ -262,9 +262,9 @@ class Sun {
         pop();
     }
 
-    Resize() {
-        this.radius = height / 10;
-    }
+    // Resize() {
+    //     this.radius = height / 10;
+    // }
 
 }
 

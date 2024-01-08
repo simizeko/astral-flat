@@ -69,18 +69,6 @@ class Colours {
         // this.active(this.palettes[0]);
     }
 
-    // active(target) {
-    //     this.bg = target.bg;
-    //     this.sun = target.sun;
-    //     this.stars = target.stars;
-    //     this.highlight = target.highlight;
-    //     this.alpha = target.alpha;
-    //     this.alphaReset = target.alphaReset;
-    //     this.R = target.R;
-    //     this.G = target.G;
-    //     this.B = target.B;
-    // }
-
     transition(next) {
         this.bg = lerpColor(this.bg, next.bg, 0.03);
         this.sun = lerpColor(this.sun, next.sun, 0.03);
@@ -91,7 +79,7 @@ class Colours {
         this.B = lerp(this.B, next.B, 0.03);
     }
 
-    fadeout(timer) {
+    Fadeout(timer) {
         if (timer >= 5) {
             // this.alpha += -0.02;
             this.alpha += -2;
@@ -128,6 +116,5 @@ class Colours {
         if (this.counter >= 100) {
             this.counter = 0
         }
-        // console.log(this.counter);
     }
 }

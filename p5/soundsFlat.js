@@ -103,7 +103,8 @@ const basfin = new Tone.Sampler({
     release: 0.1,
     volume: -3
     // baseUrl: "./audio",
-}).chain(feedbackDelay, master)
+// }).chain(feedbackDelay, master);
+}).chain(master);
 
 const twinkle = new Tone.Sampler({
     urls: {
@@ -115,7 +116,8 @@ const twinkle = new Tone.Sampler({
     release: 5,
     volume: 5
     // baseUrl: "./audio",
-}).chain(autoWah, reverb, master)
+// }).chain(autoWah, reverb, master);
+}).chain(master);
 
 const outspace = new Tone.Sampler({
     urls: {
@@ -127,7 +129,8 @@ const outspace = new Tone.Sampler({
     release: 1,
     volume: 0
     // baseUrl: "./audio",
-}).chain(widener, tremolo, master);
+// }).chain(widener, tremolo, master);
+}).chain(master);
 // .chain(chorus, cheby, reverb, tremolo, Tone.Destination);
 
 const centralPros = new Tone.Sampler({
@@ -213,8 +216,9 @@ const myhouse = new Tone.Sampler({
     attack: 0,
     release: 3,
     volume: 4
-}).chain(feedbackDelay, reverb, master);
+// }).chain(feedbackDelay, reverb, master);
 // .chain(feedbackDelay, reverb, pingPong, Tone.Destination);
+}).chain(master);
 
 const skotos = new Tone.Sampler({
     urls: {
@@ -225,7 +229,8 @@ const skotos = new Tone.Sampler({
     attack: 0,
     release: 3,
     volume: -5
-}).chain(chorus, monoWide, master);
+// }).chain(chorus, monoWide, master);
+}).chain(master);
 
 
 
@@ -244,7 +249,8 @@ const pkit = new Tone.Sampler({
     release: 3,
     volume: -10,
     // velocity: 0.1
-}).chain(tremolo, master);
+// }).chain(tremolo, master);
+}).chain(master);
 
 
 //////////// MASTER OUT /////////////

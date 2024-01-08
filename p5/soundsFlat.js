@@ -256,7 +256,7 @@ master.chain(compressor, limiter, Tone.Destination);
 let bufferSourceStart = Tone.BufferSource.prototype.start;
 let _playingBuffers = [];
 // let MAX_BUFFERS = 10;
-let MAX_POLYPHONY = 6;
+let MAX_POLYPHONY = 2;
 
 // Tone.BufferSource.prototype.start = function (time, offset, duration, gain) {
 //     //console.log(" + ", time, offset, duration, gain);
